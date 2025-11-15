@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>100 Emos — Painterly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root{color-scheme:dark}
+    body{margin:0;background:#0b0e10;color:#dde3ea;font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    header{padding:14px 18px;border-bottom:1px solid #1f262e;display:grid;gap:10px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input[type="text"]{flex:1;min-width:320px;background:#11161a;border:1px solid #26303a;border-radius:10px;color:#e7edf3;padding:11px 12px;outline:none}
+    button{background:#1a2733;border:1px solid #2b3947;color:#dfe6ee;border-radius:10px;padding:9px 12px;cursor:pointer}
+    button.primary{background:#2d5a8a;border-color:#3b6b93}
+    .pill{display:inline-block;margin:4px 6px 0 0;padding:6px 10px;border:1px solid #27313a;border-radius:999px;background:#11161a}
+    #derived{padding:8px 18px 12px;border-bottom:1px solid #1f262e}
+    #canvasHolder{display:grid;place-items:center;padding:16px}
+    .family{color:#a3d3ff}
+    label{display:inline-flex;gap:6px;align-items:center;opacity:.95}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="row">
+      <input id="moodText" type="text" placeholder="type your mood (5–30 words) …"/>
+      <button id="btnA4" class="primary">A4</button>
+      <button id="btnSquare">Square</button>
+      <button id="btnPreview">Quick Preview</button>
+      <button id="btnGenerate">Generate</button>
+      <button id="btnDownload">Download PNG</button>
+    </div>
+    <div class="row">
+      <label><input type="checkbox" id="seedLock" checked/> Lock seed</label>
+      <input id="overrideSeed" type="text" placeholder="override seed (optional)" style="width:160px"/>
+      <label><input type="checkbox" id="cmykSafe"/> CMYK-ish bg</label>
+      <label><input type="checkbox" id="showGuide"/> Guides</label>
+      <button id="btnRandom">Randomize Seed</button>
+    </div>
+  </header>
+
+  <div id="derived"></div>
+  <div id="canvasHolder"></div>
+
+  <!-- p5 core (global mode) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+
+  <!-- our data + engine -->
+  <script src="./Data v0.53.js"></script>
+  <script src="./Script v0.53.js"></script>
+  <!-- <script src="./Data v0.5.js"></script>
+  <script src="./Script v0.5.js"></script> -->
+</body>
+</html>
