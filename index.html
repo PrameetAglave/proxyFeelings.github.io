@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>100 Emos — Painterly</title>
+  <title>Proxy Feelings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
     :root{color-scheme:dark}
@@ -11,7 +11,11 @@
     .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     input[type="text"]{flex:1;min-width:320px;background:#11161a;border:1px solid #26303a;border-radius:10px;color:#e7edf3;padding:11px 12px;outline:none}
     button{background:#1a2733;border:1px solid #2b3947;color:#dfe6ee;border-radius:10px;padding:9px 12px;cursor:pointer}
-    button.primary{background:#2d5a8a;border-color:#3b6b93}
+    button.primary{background:#4086d2;border-color:#3b6b93}
+    button:hover{background:#27313a}
+    button.primary:hover{background:#3369c1}
+    button.secondary{background:#9a158a;border-color:#1f262e}
+    button.secondary:hover{background:#5a035a}
     .pill{display:inline-block;margin:4px 6px 0 0;padding:6px 10px;border:1px solid #27313a;border-radius:999px;background:#11161a}
     #derived{padding:8px 18px 12px;border-bottom:1px solid #1f262e}
     #canvasHolder{display:grid;place-items:center;padding:16px}
@@ -22,19 +26,21 @@
 <body>
   <header>
     <div class="row">
-      <input id="moodText" type="text" placeholder="type your mood (5–30 words) …"/>
-      <button id="btnA4" class="primary">A4</button>
-      <button id="btnSquare">Square</button>
-      <button id="btnPreview">Quick Preview</button>
-      <button id="btnGenerate">Generate</button>
+      <h1>Proxy Feelings</h1>
+      <button id="btnInfo" class="secondary">Help!</button>
+      <input id="moodText" type="text" placeholder="type your mood, describe how are you feeling, in as much detail as possible..."/>
+      <!-- <button id="btnPreview"class="primary">Quick Preview</button> -->
+      <button hidden id="btnSquare" class="primary" visibility="invisible" >Square</button>
+      <!-- <button id="btnA4">A4</button> -->
+      <button id="btnGenerate" class="primary">Generate</button>
       <button id="btnDownload">Download PNG</button>
     </div>
     <div class="row">
-      <label><input type="checkbox" id="seedLock" checked/> Lock seed</label>
-      <input id="overrideSeed" type="text" placeholder="override seed (optional)" style="width:160px"/>
-      <label><input type="checkbox" id="cmykSafe"/> CMYK-ish bg</label>
-      <label><input type="checkbox" id="showGuide"/> Guides</label>
+      <label><input type="checkbox" id="seedLock" unchecked/> Lock seed</label>
+      <input id="overrideSeed" type="text" placeholder="(optional) type your own seed - random numbers that serve as a dna" style="width:390px"/>
       <button id="btnRandom">Randomize Seed</button>
+      <!-- <label><input type="checkbox" id="cmykSafe"/> CMYK-ish bg</label> -->
+      <!-- <label><input type="checkbox" id="showGuide"/> Guides</label> -->
     </div>
   </header>
 
@@ -47,7 +53,6 @@
   <!-- our data + engine -->
   <script src="./Data.js"></script>
   <script src="./Script.js"></script>
-  <!-- <script src="./Data v0.5.js"></script>
-  <script src="./Script v0.5.js"></script> -->
+  
 </body>
 </html>
