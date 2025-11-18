@@ -1,28 +1,42 @@
 // ========= sizing / ui =========
 const A4 = { w: 2480, h: 3508 };
 const SQ = { w: 1024, h: 1024 };
-const PREVIEW = { w: 1024, h: 1024 };
+const PREVIEW = { w: 512, h: 512 };
 let targetSize = SQ;
 
 const elText = document.getElementById('moodText');
-const elA4 = document.getElementById('btnA4');
+// const elA4 = document.getElementById('btnA4');
 const elSq = document.getElementById('btnSquare');
-const elPreview = document.getElementById('btnPreview');
+// const elPreview = document.getElementById('btnPreview');
 const elGen = document.getElementById('btnGenerate');
 const elDl = document.getElementById('btnDownload');
 const elSeedLock = document.getElementById('seedLock');
 const elSeedOverride = document.getElementById('overrideSeed');
-const elCMYK = document.getElementById('cmykSafe');
-const elGuide = document.getElementById('showGuide');
+// const elCMYK = document.getElementById('cmykSafe');
+// const elGuide = document.getElementById('showGuide');
 const elRand = document.getElementById('btnRandom');
 const elDerived = document.getElementById('derived');
+const elInfo = document.getElementById('btnInfo');
 
-elA4.onclick = () => { targetSize = A4; elA4.classList.add('primary'); elSq.classList.remove('primary'); regen(); };
+// elA4.onclick = () => { targetSize = A4; elA4.classList.add('primary'); elSq.classList.remove('primary'); regen(); };
 elSq.onclick = () => { targetSize = SQ; elSq.classList.add('primary'); elA4.classList.remove('primary'); regen(); };
-elPreview.onclick = () => quickPreview();
-elGen.onclick = () => regen();
+// elPreview.onclick = () => quickPreview();
 elDl.onclick = () => saveCanvas(currentCanvas, filename() + '.png');
 elRand.onclick = () => { elSeedLock.checked = false; regen(); };
+
+elGen.onclick = () => regen();
+window.addEventListener('keypress',function(e){
+  if(e.key==='Enter'){
+    regen();
+    elGen.click();
+  }
+});
+elInfo.onclick = () => {popup();};
+popup = () => {
+  alert("Proxy Feelings\n\nDescribe your mood or feelings in the text box and press Enter to create an abstract artwork that reflects your emotional state. \n\nYou can optionally lock the seed for consistent results or provide your own seed for unique variations.\n\nEnjoy expressing your emotions through art!");
+};
+
+
 
 // ========= state =========
 let currentCanvas;
@@ -44,7 +58,7 @@ function draw(){
   noiseSeed(derived.seed);
 
   backgroundLayer(derived);
-  if (elGuide.checked) drawGuides();
+  // if (elGuide.checked) drawGuides();
 
   const famA = derived.top2[0];
   const famB = derived.top2[1];
@@ -80,7 +94,7 @@ function regen(){
 function quickPreview(){
   const old = targetSize;
   targetSize = PREVIEW; resizeCanvas(PREVIEW.w, PREVIEW.h); regen();
-  setTimeout(()=>{ targetSize = old; resizeIfNeeded(); }, 30);
+  setTimeout(()=>{ targetSize = old; resizeIfNeeded(); }, 300);
 }
 function resizeIfNeeded(){
   const s = (targetSize===A4)?A4: (targetSize===SQ?SQ:targetSize);
@@ -166,7 +180,7 @@ function backgroundLayer(d){
   const famB = d.top2[1];
 
   // base neutral
-  const base = elCMYK.checked ? color(22,22,20) : color(16,16,18);
+  const base = color(22,22,20);
   background(base);
 
   // deterministic backgrounds per family
